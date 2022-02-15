@@ -1,9 +1,28 @@
 // TODO: Create this function
 async function getPokemon() {
     const pokemon = retrieveInputs();
+
     for (let i in pokemon) {
-        console.log("element contains:" + i)
-        console.log("test")
+        let url = 'https://pokeapi.co/api/v2/pokemon/' + pokemon[i] + '/'
+        const fetchResponsePromise = await (await fetch(url)).json()
+        console.log(fetchResponsePromise);
+        let name = fetchResponsePromise.name;
+        let types = fetchResponsePromise.types;
+        let stats = fetchResponsePromise.stats;
+        let hp = stats[0].base_stat;
+        let attack = stats[1].base_stat;
+        let defense = stats[2].base_stat;
+        let special_attack = stats[3].base_stat;
+        let special_defense = stats[4].base_stat;
+        let speed = stats[5].base_stat;
+        let abilities = fetchResponsePromise.abilities;
+        let height = fetchResponsePromise.height;
+        let weight = fetchResponsePromise.weight;
+        let sprites = fetchResponsePromise.sprites;
+        let img = sprites.front_default;
+
+        buildCard(name, types, hp, attack, defense, special_attack, special_defense, speed, abilities, height, weight, img)
+
     }
 }
 
