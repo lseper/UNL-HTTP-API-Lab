@@ -3,6 +3,7 @@ async function getPokemon() {
     const pokemon = retrieveInputs();
     for (let i in pokemon) {
         console.log("element contains:" + i)
+        console.log("test")
     }
 }
 
